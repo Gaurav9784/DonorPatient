@@ -1,0 +1,50 @@
+syntax="proto3";
+
+package proto;
+
+option go_package="/Desktop/bugsmirror/GRPC/proto/service.proto";
+
+message User{
+    string User_Id =1;
+	string Secret_Code =2;        
+	string Name =3;              
+	string Phone_Number =4;      
+	string Age =5;
+	string Address =6;
+	string User_Type =7;
+    string Email =8;
+    string Disease =9;
+	map<string,int64> Requested_User =10;
+	map<string,int64> Pending_Request =11;
+	map<string,int64> Connected_User=12;
+}
+
+message GetUserDetails{
+    string User_Id =1;
+	string Name =2;              
+	string Phone_Number =3;      
+	string Age =4;
+	string Address =5;
+	string User_Type =6;
+    string Email =7;
+    string Disease =8;
+}
+
+message UserSlice{
+  repeated GetUserDetails userslice=1;
+}
+
+service AddService{
+    rpc createuser(User) returns (User);
+    rpc loginuser(User) returns (User);
+    rpc deleteuser(User) returns (User);
+    rpc getuser(User) returns (GetUserDetails);
+    rpc updatecontactdetails(User) returns (User);
+    rpc getallpatients(User) returns (UserSlice);
+    rpc getalldonors(User) returns (UserSlice);
+    rpc sendrequest(User) returns (User);
+    rpc acceptrequest(User) returns (User);
+    rpc cancelconnection(User) returns (User);
+    rpc cancelrequest(User) returns (User);
+}
+
